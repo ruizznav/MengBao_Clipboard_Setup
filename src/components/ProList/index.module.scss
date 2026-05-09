@@ -1,0 +1,48 @@
+.root {
+  margin-bottom: 12px;
+
+  .title {
+    padding: 14px 16px 6px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  :global {
+    .ant-list {
+      background: transparent !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+
+      .ant-list-item {
+        padding: 10px 16px !important;
+
+        .ant-list-item-meta-title {
+          margin-bottom: 0 !important;
+          font-size: 14px !important;
+        }
+
+        .ant-list-item-meta-description {
+          font-size: 12px !important;
+        }
+
+        .ant-list-item-action {
+          display: inline-flex;
+          align-items: center;
+
+          li {
+            padding-inline-start: 8px !important;
+
+            &:last-child {
+              padding-inline-start: 8px !important;
+            }
+          }
+        }
+      }
+
+      .ant-list-item:last-child {
+        border-block-end: none !important;
+      }
+    }
+  }
+}
