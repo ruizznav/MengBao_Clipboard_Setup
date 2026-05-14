@@ -76,9 +76,29 @@
 
 ---
 
+## 🆕 v5.0.0 - 正式版
+
+> 🎉 萌宝剪贴板 v5 正式发布！基于 EcoPaste 深度定制，带来更可爱的剪贴板体验 ✨
+
+### ✨ 主要更新
+- 🐱 **全新萌宝品牌** - 基于 EcoPaste 二次开发，打造专属萌宝剪贴板
+- 🎨 **6 种可爱主题** - 奶油猫 / 蜜桃乌龙 / 薰衣草 / 晴空 / 抹茶 / 珊瑚
+- 📋 **智能剪贴板管理** - 自动记录、快速搜索、双击粘贴
+- 🗂️ **双层分类系统** - 主分类 + 子分类，高效整理剪贴板内容
+- 💾 **备份与恢复** - 一键备份所有偏好设置和剪贴板内容
+- 🚀 **系统托盘常驻** - 后台运行，全局快捷键一键唤醒
+- 🖼️ **截图优化** - 压缩并优化所有界面截图资源
+
+### 🛠️ 技术升级
+- 基于 **Tauri v2 + Rust** 构建，性能更优、体积更小
+- 前端采用 **React + TypeScript + Vite**
+- 样式使用 **UnoCSS + Ant Design**
+
+---
+
 ## 📦 下载
 
-[👉 下载萌宝剪贴板 v1.0.0](https://github.com/ruizznav/MengBao_Clipboard_Setup/releases/latest)
+[👉 下载萌宝剪贴板 v5.0.0](https://github.com/ruizznav/MengBao_Clipboard_Setup/releases/latest)
 
 **支持平台**：Windows 10/11 64 位
 
