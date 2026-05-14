@@ -136,9 +136,9 @@ pnpm tauri build --no-bundle
 
 ---
 
-## 📄 使用说明
+## ❔ 使用说明
 
-[ 使用说明 ](https://github.com/ruizznav/MengBao_Clipboard_Setup/blob/main/%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md)
+详细请阅[ 使用说明 ](https://github.com/ruizznav/MengBao_Clipboard_Setup/blob/main/%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md)
 
 
 ---
