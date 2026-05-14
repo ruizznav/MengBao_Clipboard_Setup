@@ -3039,7 +3039,7 @@ dependencies = [
 
 [[package]]
 name = "mengbao-clipboard"
-version = "0.6.0-beta.3"
+version = "1.0.0"
 dependencies = [
  "serde",
  "serde_json",
