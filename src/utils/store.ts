@@ -20,11 +20,17 @@ import { getSaveStorePath } from "./path";
  * 初始化配置项
  */
 const initStore = async () => {
-  globalStore.appearance.language ??= await getLocale<Language>();
+  if (!globalStore.appearance.language) {
+    globalStore.appearance.language = await getLocale<Language>();
+  }
   globalStore.env.platform = platform();
   globalStore.env.appName = await getName();
   globalStore.env.appVersion = await getVersion();
-  globalStore.env.saveDataDir ??= await appDataDir();
+
+  // 只在路径为空时才使用默认值（避免覆盖用户自定义路径）
+  if (!globalStore.env.saveDataDir) {
+    globalStore.env.saveDataDir = await appDataDir();
+  }
 
   // 主题迁移兼容：旧版 auto/light/dark 映射到新版主题
   const theme = globalStore.appearance.theme;
@@ -80,7 +86,12 @@ export const restoreStore = async (backup = false) => {
   if (existed) {
     const content = await readTextFile(path);
     const store: Store = JSON.parse(content);
-    const nextGlobalStore = omit(store.globalStore, backup ? "env" : "");
+
+    // 备份恢复时不恢复 env（含平台相关临时路径）
+    // 正常恢复时完整恢复，包括用户自定义的路径配置
+    const nextGlobalStore = backup
+      ? omit(store.globalStore, "env")
+      : store.globalStore;
 
     deepAssign(globalStore, nextGlobalStore);
     deepAssign(clipboardStore, store.clipboardStore);

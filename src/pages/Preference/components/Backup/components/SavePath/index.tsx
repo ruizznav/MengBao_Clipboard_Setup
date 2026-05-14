@@ -31,8 +31,8 @@ const SavePath: FC<{ state: State }> = (props) => {
   const [cacheDir, setCacheDir] = useState("");
 
   useMount(async () => {
-    setDataDir(await tauriDataDir());
-    // 从 store 恢复，否则读默认值
+    // 优先从 store 恢复自定义路径，否则读默认值
+    setDataDir(globalStore.env.saveDataDir || await tauriDataDir());
     setLogDir(globalStore.env.logDir || await appLogDir());
     try {
       setCacheDir(globalStore.env.cacheDir || await appCacheDir());
