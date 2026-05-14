@@ -1,8 +1,13 @@
+import { getVersion } from "@tauri-apps/api/app";
 import { Avatar, Flex, Tag, Typography } from "antd";
+import { useMount } from "ahooks";
+import { useState } from "react";
 
 const { Text } = Typography;
 
 const About = () => {
+  const [version, setVersion] = useState("");
+
   const features = [
     "自定义分类管理",
     "内容自由排序",
@@ -10,6 +15,10 @@ const About = () => {
     "双击自动粘贴",
     "右键快速分类",
   ];
+
+  useMount(async () => {
+    setVersion(await getVersion());
+  });
 
   return (
     <>
@@ -27,7 +36,7 @@ const About = () => {
         </Text>
 
         <Text type="secondary" style={{ fontSize: 13, marginBottom: 20 }}>
-          v5 · 可可爱爱的跨平台剪贴板管理工具
+          v{version} · 可可爱爱的跨平台剪贴板管理工具
         </Text>
 
         <div
@@ -61,6 +70,11 @@ const About = () => {
       {/* 作者区域 */}
       <Flex vertical align="center" style={{ paddingBottom: 24 }}>
         <div style={{ width: 40, height: 2, borderRadius: 1, background: "var(--ant-color-border-secondary)", marginBottom: 16 }} />
+        <Avatar
+          size={48}
+          src="/author-logo.jpg"
+          style={{ marginBottom: 8, border: "2px solid var(--ant-color-primary)" }}
+        />
         <Flex align="center" gap={8} style={{ marginBottom: 4 }}>
           <Text type="secondary" style={{ fontSize: 13 }}>由</Text>
           <Text style={{ fontSize: 16, fontWeight: 600, color: "var(--ant-color-primary)" }}>
