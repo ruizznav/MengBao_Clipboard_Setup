@@ -136,6 +136,13 @@ pnpm tauri build --no-bundle
 
 ---
 
+## 📄 使用说明
+
+[ 使用说明 ](https://github.com/ruizznav/MengBao_Clipboard_Setup/blob/main/%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md)
+
+
+---
+
 ## 📄 开源协议
 
 本项目基于 [Apache 2.0](LICENSE) 协议发布，基于 [EcoPaste](https://github.com/ayangweb/EcoPaste) 修改，感谢原作者的出色工作。
