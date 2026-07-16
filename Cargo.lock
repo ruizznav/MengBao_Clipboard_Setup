@@ -3041,6 +3041,7 @@ dependencies = [
 name = "mengbao-clipboard"
 version = "1.0.0"
 dependencies = [
+ "image",
  "serde",
  "serde_json",
  "tauri",
@@ -3064,6 +3065,7 @@ dependencies = [
  "tauri-plugin-process",
  "tauri-plugin-single-instance",
  "tauri-plugin-sql",
+ "windows 0.58.0",
 ]
 
 [[package]]

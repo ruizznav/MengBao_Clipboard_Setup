@@ -1,6 +1,6 @@
 # 🐱 萌宝剪贴板
 
-> 可可爱爱的剪贴板管理工具 · 基于 Tauri v2  
+> 可可爱爱的跨平台剪贴板管理工具 · 基于 Tauri v2  
 > *让你的复制粘贴变得优雅又治愈 ✨*
 
 <p align="center">
@@ -52,6 +52,19 @@
 | <img src="screenshots/晴空.png" width="150"/> | <img src="screenshots/抹茶.png" width="150"/> | <img src="screenshots/珊瑚.png" width="150"/> |
 | 清爽蓝色，心情变好 | 清新绿色，自然舒适 | 热情活力，眼前一亮 |
 
+### 📸 框选截图
+
+一键框选屏幕区域，截图自动保存到剪贴板——**不用离开当前窗口，截图和剪贴板无缝衔接。**
+
+| 功能 | 说明 |
+|---|---|
+| 🎯 **框选截图** | 热键唤起，鼠标拖拽选定区域即截图 |
+| 🖱️ **双击复制** | 在剪贴板中双击截图直接复制到系统剪贴板 |
+| ⌨️ **默认快捷键** | 截图 `Ctrl + Alt + Z` · 剪贴板 `Alt + Z` |
+| 📋 **自动归档** | 截图自动存入剪贴板，按「图片」子分类即可查看 |
+
+<img src="screenshots/快捷键.png" alt="快捷键设置" width="320"/>
+
 ### 💾 备份与恢复
 
 一键备份所有偏好设置和剪贴板内容，支持随时恢复到任意备份版本，数据安全无虞。
@@ -60,7 +73,7 @@
 
 - 后台运行，不占任务栏
 - 右键菜单：偏好设置 / 开关监听 / 重启 / 退出
-- 全局快捷键一键唤醒
+- 默认：`Alt + Z` 唤醒剪贴板 · `Ctrl + Alt + Z` 框选截图（可在偏好设置中自定义）
 
 ---
 
@@ -73,6 +86,18 @@
 | 通用设置 | 关于软件 |
 |---|---|
 | <img src="screenshots/通用设置.png" width="200"/> | <img src="screenshots/关于.png" width="200"/> |
+
+---
+
+## 🆕 v5.1.0 - 框选截图
+
+> 📸 新增框选截图功能！热键唤起，拖拽即截图，双击即复制——截图和剪贴板无缝衔接。
+
+### ✨ 新功能
+- 📸 **框选截图** - `Ctrl + Alt + Z` 热键唤起，鼠标拖拽框选屏幕区域即截图
+- 🖱️ **双击复制截图** - 在剪贴板中双击截图即可复制到系统剪贴板
+- ⌨️ **默认快捷键优化** - 截图 `Ctrl + Alt + Z` · 剪贴板 `Alt + Z`（偏好设置中可自定义）
+- 🐛 **修复** - 文本子分类下不再误显示图片/文件
 
 ---
 
@@ -98,7 +123,7 @@
 
 ## 📦 下载
 
-[👉 下载萌宝剪贴板 v5.0.0](https://github.com/ruizznav/MengBao_Clipboard_Setup/releases/latest)
+[👉 下载萌宝剪贴板 v5.1.0](https://github.com/ruizznav/MengBao_Clipboard_Setup/releases/latest)
 
 **支持平台**：Windows 10/11 64 位
 
@@ -133,13 +158,6 @@ pnpm tauri dev
 pnpm tauri build --no-bundle
 # 然后使用 Inno Setup 打包安装包
 ```
-
----
-
-## ❔ 使用说明
-
-详细请阅[ 使用说明 ](https://github.com/ruizznav/MengBao_Clipboard_Setup/blob/main/%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md)
-
 
 ---
 
