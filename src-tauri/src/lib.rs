@@ -14,6 +14,18 @@ pub fn run() {
         .setup(|app| {
             let app_handle = app.handle();
 
+            // 命名互斥体: 进程存活期间由内核持有, 退出后自动释放
+            // NSIS 安装/卸载脚本通过 OpenMutexW 检测此互斥体, 判断程序是否在运行
+            // (ASCII 名称, 纯 Windows API, 不依赖命令行, 规避中文进程名编码问题)
+            #[cfg(windows)]
+            {
+                use windows::Win32::System::Threading::CreateMutexW;
+                use windows::core::w;
+                unsafe {
+                    let _ = CreateMutexW(None, false, w!("MengBaoClipboardRunning"));
+                }
+            }
+
             let main_window = app.get_webview_window(MAIN_WINDOW_LABEL).unwrap();
 
             let preference_window = app.get_webview_window(PREFERENCE_WINDOW_LABEL).unwrap();
