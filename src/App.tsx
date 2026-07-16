@@ -26,7 +26,7 @@ const { defaultAlgorithm, darkAlgorithm } = theme;
 const App = () => {
   const { appearance } = useSnapshot(globalStore);
   const { restoreState } = useWindowState();
-  const [ready, { toggle }] = useBoolean();
+  const [ready] = useBoolean(true);
 
   useMount(async () => {
     await restoreState();
@@ -43,8 +43,6 @@ const App = () => {
     } else {
       document.documentElement.classList.remove("dark");
     }
-
-    toggle();
   });
 
   // 监听语言的变化

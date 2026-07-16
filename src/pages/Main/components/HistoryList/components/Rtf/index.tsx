@@ -9,7 +9,7 @@ WMFJS.loggingEnabled(false);
 EMFJS.loggingEnabled(false);
 
 const Rtf: FC<DatabaseSchemaHistory<"rtf">> = (props) => {
-  const { value } = props;
+  const { value = "" } = props;
 
   const [parsedHTML, setParsedHTML] = useState("");
 

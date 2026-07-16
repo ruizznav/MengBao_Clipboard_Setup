@@ -1,6 +1,8 @@
 import { useEventEmitter, useKeyPress, useMount, useReactive } from "ahooks";
 import type { EventEmitter } from "ahooks/lib/useEventEmitter";
 import { range } from "es-toolkit";
+import { invoke } from "@tauri-apps/api/core";
+import { message } from "@tauri-apps/plugin-dialog";
 import { find, last } from "es-toolkit/compat";
 import { createContext, useRef } from "react";
 import { startListening, stopListening } from "tauri-plugin-clipboard-x-api";
@@ -90,6 +92,19 @@ const Main = () => {
 
   // 窗口显示与隐藏
   useRegister(toggleWindowVisible, [shortcut.clipboard]);
+
+  // 截图快捷键（可自定义，默认 Alt+S）
+  useRegister(
+    async () => {
+      try {
+        await invoke("start_screenshot");
+      } catch (e) {
+        const msg = e instanceof Error ? e.message : String(e);
+        message("截图启动失败：" + msg, { title: "萌宝截图", kind: "error" });
+      }
+    },
+    [shortcut.screenshot || PRESET_SHORTCUT.SCREENSHOT],
+  );
 
   // 打开偏好设置窗口
   useKeyPress(PRESET_SHORTCUT.OPEN_PREFERENCES, () => {

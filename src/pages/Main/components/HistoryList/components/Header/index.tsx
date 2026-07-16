@@ -18,7 +18,6 @@ import { dayjs } from "@/utils/dayjs";
 interface HeaderProps {
   data: DatabaseSchemaHistory;
   handleNote: () => void;
-  handleFavorite: () => void;
   handleDelete: () => void;
   handleMoveUp?: () => void;
   handleMoveDown?: () => void;
@@ -26,15 +25,15 @@ interface HeaderProps {
 
 const Header: FC<HeaderProps> = (props) => {
   const { data } = props;
-  const { id, type, value, count, createTime, favorite, subtype } = data;
+  const { id, type, value, count, createTime, subtype } = data;
   const { rootState } = useContext(MainContext);
   const { t, i18n } = useTranslation();
   const { content } = useSnapshot(clipboardStore);
 
   const operationButtons = useCreation(() => {
-    return content.operationButtons.map((key) => {
-      return transferData.find((data) => data.key === key)!;
-    });
+    return (content.operationButtons || [])
+      .map((key) => transferData.find((data) => data.key === key))
+      .filter(Boolean);
   }, [content.operationButtons]);
 
   const renderType = () => {
@@ -59,20 +58,35 @@ const Header: FC<HeaderProps> = (props) => {
       case "image":
         return t("clipboard.label.image");
       case "files":
-        return t("clipboard.label.n_files", {
-          replace: [value.length],
-        });
+        // 防御：t() 内部可能因 i18next 插值异常而返回 undefined
+        try {
+          return t("clipboard.label.n_files", {
+            replace: [Array.isArray(value) ? value.length : 0],
+          }) || `${Array.isArray(value) ? value.length : 0} 个文件`;
+        } catch {
+          return `${Array.isArray(value) ? value.length : 0} 个文件`;
+        }
     }
+
+    return type || "";
   };
 
   const renderCount = () => {
+    const safeCount = count ?? 0;
+
     if (type === "files" || type === "image") {
-      return filesize(count, { standard: "jedec" });
+      return filesize(safeCount, { standard: "jedec" });
     }
 
-    return t("clipboard.label.n_chars", {
-      replace: [count],
-    });
+    // 防御：t() 插值可能异常
+    try {
+      return (
+        t("clipboard.label.n_chars", { replace: [safeCount] }) ||
+        `${safeCount} 个字符`
+      );
+    } catch {
+      return `${safeCount} 个字符`;
+    }
   };
 
   const renderPixel = () => {
@@ -88,7 +102,7 @@ const Header: FC<HeaderProps> = (props) => {
   };
 
   const handleClick = (event: MouseEvent, key: OperationButton) => {
-    const { handleNote, handleFavorite, handleDelete, handleMoveUp, handleMoveDown } = props;
+    const { handleNote, handleDelete, handleMoveUp, handleMoveDown } = props;
 
     event.stopPropagation();
 
@@ -99,8 +113,6 @@ const Header: FC<HeaderProps> = (props) => {
         return pasteToClipboard(data, true);
       case "note":
         return handleNote();
-      case "star":
-        return handleFavorite();
       case "delete":
         return handleDelete();
       case "moveUp":
@@ -117,7 +129,7 @@ const Header: FC<HeaderProps> = (props) => {
           <span>{renderType()}</span>
           <span>{renderCount()}</span>
           {renderPixel()}
-          <span>{dayjs(createTime).locale(i18n.language).fromNow()}</span>
+          <span>{dayjs(createTime || new Date()).locale(i18n.language).fromNow()}</span>
         </Flex>
       </Scrollbar>
 
@@ -130,16 +142,13 @@ const Header: FC<HeaderProps> = (props) => {
         onDoubleClick={(event) => event.stopPropagation()}
       >
         {operationButtons.map((item) => {
-          const { key, icon, activeIcon, title } = item;
-
-          const isFavorite = key === "star" && favorite;
+          const { key, icon, title } = item;
 
           return (
             <UnoIcon
-              className={clsx({ "text-gold!": isFavorite })}
               hoverable
               key={key}
-              name={isFavorite ? activeIcon : icon}
+              name={icon}
               onClick={(event) => handleClick(event, key)}
               title={t(title)}
             />

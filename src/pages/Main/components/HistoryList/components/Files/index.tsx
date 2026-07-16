@@ -4,7 +4,7 @@ import { isImage } from "@/utils/is";
 import File from "./components/File";
 
 const Files: FC<DatabaseSchemaHistory<"files">> = (props) => {
-  const { value } = props;
+  const { value = [] } = props;
 
   const getClassName = () => {
     if (value.length === 1) {

@@ -40,6 +40,15 @@ const Shortcut = () => {
           title={t("preference.shortcut.shortcut.label.paste_as_plain")}
           value={shortcut.pastePlain}
         />
+
+        <ProShortcut
+          description={t("preference.shortcut.shortcut.hints.screenshot")}
+          onChange={(value) => {
+            globalStore.shortcut.screenshot = value;
+          }}
+          title={t("preference.shortcut.shortcut.label.screenshot")}
+          value={shortcut.screenshot}
+        />
       </ProList>
 
       <Preset />

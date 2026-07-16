@@ -25,7 +25,7 @@ const History = () => {
 
     timerRef.current = setInterval(async () => {
       const list = await selectHistory((qb) => {
-        return qb.where("favorite", "=", false);
+        return qb;
       });
 
       for (const [index, item] of list.entries()) {

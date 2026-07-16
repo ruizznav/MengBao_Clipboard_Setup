@@ -4,11 +4,8 @@ import type { HookAPI } from "antd/es/modal/useModal";
 import clsx from "clsx";
 import { type FC, useContext } from "react";
 import { Marker } from "react-mark.js";
+import { startListening, stopListening } from "tauri-plugin-clipboard-x-api";
 import { useSnapshot } from "valtio";
-import {
-  startListening,
-  stopListening,
-} from "tauri-plugin-clipboard-x-api";
 import SafeHtml from "@/components/SafeHtml";
 import UnoIcon from "@/components/UnoIcon";
 import { LISTEN_KEY } from "@/constants";
@@ -39,7 +36,7 @@ const Item: FC<ItemProps> = (props) => {
   const { content } = useSnapshot(clipboardStore);
 
   const handlePreview = () => {
-    if (type !== "image") return;
+    if (type !== "image" || !value) return;
 
     openPath(value);
   };
@@ -61,7 +58,7 @@ const Item: FC<ItemProps> = (props) => {
   rootState.eventBus?.useSubscription((payload) => {
     if (payload.id !== id) return;
 
-    const { handleDelete, handleFavorite } = rest;
+    const { handleDelete } = rest;
 
     switch (payload.action) {
       case LISTEN_KEY.CLIPBOARD_ITEM_PREVIEW:
@@ -74,8 +71,6 @@ const Item: FC<ItemProps> = (props) => {
         return handlePrev();
       case LISTEN_KEY.CLIPBOARD_ITEM_SELECT_NEXT:
         return handleNext();
-      case LISTEN_KEY.CLIPBOARD_ITEM_FAVORITE:
-        return handleFavorite();
     }
   });
 
@@ -90,7 +85,9 @@ const Item: FC<ItemProps> = (props) => {
     if (content.autoPaste !== type) return;
 
     // 暂停剪贴板监听，防止粘贴触发重复插入
-    try { stopListening(); } catch {}
+    try {
+      stopListening();
+    } catch {}
 
     // 隐藏窗口，让焦点回到目标应用，才能自动粘贴
     await hideWindow();
@@ -127,7 +124,7 @@ const Item: FC<ItemProps> = (props) => {
         return 0;
       });
     } catch (err) {
-      message.error("上移失败: " + String(err));
+      message.error(`上移失败: ${String(err)}`);
     }
   };
 
@@ -156,43 +153,55 @@ const Item: FC<ItemProps> = (props) => {
         return 0;
       });
     } catch (err) {
-      message.error("下移失败: " + String(err));
+      message.error(`下移失败: ${String(err)}`);
     }
   };
 
   const renderContent = () => {
-    switch (type) {
-      case "text":
-        return <Text {...data} />;
-      case "rtf":
-        return <Rtf {...data} />;
-      case "html":
-        return <SafeHtml {...data} />;
-      case "image":
-        return <Image {...data} />;
-      case "files":
-        return <Files {...data} />;
+    try {
+      switch (type) {
+        case "text":
+          return <Text {...data} />;
+        case "rtf":
+          return <Rtf {...data} />;
+        case "html":
+          return <SafeHtml {...data} />;
+        case "image":
+          return <Image {...data} />;
+        case "files":
+          return <Files {...data} />;
+      }
+    } catch (err) {
+      console.error("[Item] renderContent error:", err, data);
+      return (
+        <span style={{ color: "var(--ant-color-error)", fontSize: 12 }}>
+          [渲染异常: {type}]
+        </span>
+      );
     }
   };
 
   return (
     <Flex
-      className={clsx(
-        "group max-h-30",
-        {
-          "cute-card active": rootState.activeId === id,
-          "cute-card": rootState.activeId !== id,
-        },
-      )}
+      className={clsx("group max-h-30", {
+        "cute-card": rootState.activeId !== id,
+        "cute-card active": rootState.activeId === id,
+      })}
       gap={6}
       onClick={() => handleClick("single")}
       onContextMenu={handleContextMenu}
       onDoubleClick={() => handleClick("double")}
-      style={{ position: "relative", overflow: "hidden" }}
+      style={{ overflow: "hidden", position: "relative" }}
       vertical
     >
-      <Flex className="flex-1" vertical style={{ minWidth: 0 }}>
-        <Header {...rest} data={data} handleNote={handleNote} handleMoveUp={handleMoveUp} handleMoveDown={handleMoveDown} />
+      <Flex className="flex-1" style={{ minWidth: 0 }} vertical>
+        <Header
+          {...rest}
+          data={data}
+          handleMoveDown={handleMoveDown}
+          handleMoveUp={handleMoveUp}
+          handleNote={handleNote}
+        />
 
         <div className="relative flex-1 select-auto overflow-hidden break-words children:transition">
           <div

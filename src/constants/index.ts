@@ -19,23 +19,22 @@ export const LANGUAGE = {
 export const LISTEN_KEY = {
   ACTIVATE_BACK_TOP: "activate-back-top",
   CLIPBOARD_ITEM_DELETE: "clipboard-item-delete",
-  CLIPBOARD_ITEM_FAVORITE: "clipboard-item-favorite",
   CLIPBOARD_ITEM_PASTE: "clipboard-item-paste",
   CLIPBOARD_ITEM_PREVIEW: "clipboard-item-preview",
   CLIPBOARD_ITEM_SELECT_NEXT: "clipboard-item-select-next",
   CLIPBOARD_ITEM_SELECT_PREV: "clipboard-item-select-prev",
   CLOSE_DATABASE: "close-database",
+  GROUPS_CHANGED: "groups-changed",
   REFRESH_CLIPBOARD_LIST: "refresh-clipboard-list",
   SHOW_WINDOW: "show-window",
   STORE_CHANGED: "store-changed",
   TOGGLE_LISTEN_CLIPBOARD: "toggle-listen-clipboard",
-  GROUPS_CHANGED: "groups-changed",
 };
 
 export const PRESET_SHORTCUT = {
-  FAVORITE: isMac ? "meta.d" : "ctrl.d",
   FIXED_WINDOW: isMac ? "meta.p" : "ctrl.p",
   HIDE_WINDOW: isMac ? "meta.w" : "ctrl.w",
   OPEN_PREFERENCES: isMac ? "meta.comma" : "ctrl.comma",
   SEARCH: isMac ? "meta.f" : "ctrl.f",
+  SCREENSHOT: isMac ? "Command+Shift+S" : "Control+Alt+Z",
 };

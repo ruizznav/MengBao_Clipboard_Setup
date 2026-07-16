@@ -1,4 +1,9 @@
-import { Menu, MenuItem, Submenu, type MenuItemOptions } from "@tauri-apps/api/menu";
+import {
+  Menu,
+  MenuItem,
+  type MenuItemOptions,
+  Submenu,
+} from "@tauri-apps/api/menu";
 import { downloadDir } from "@tauri-apps/api/path";
 import { copyFile, writeTextFile } from "@tauri-apps/plugin-fs";
 import { openUrl, revealItemInDir } from "@tauri-apps/plugin-opener";
@@ -7,7 +12,11 @@ import { type MouseEvent, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { useSnapshot } from "valtio";
 import { selectGroups } from "@/database/group";
-import { deleteHistory, updateHistory, updateHistorySortOrder } from "@/database/history";
+import {
+  deleteHistory,
+  updateHistory,
+  updateHistorySortOrder,
+} from "@/database/history";
 import { MainContext } from "@/pages/Main";
 import type { ItemProps } from "@/pages/Main/components/HistoryList/components/Item";
 import { pasteToClipboard, writeToClipboard } from "@/plugins/clipboard";
@@ -26,25 +35,13 @@ interface ContextMenuItem extends MenuItemOptions {
 
 export const useContextMenu = (props: UseContextMenuProps) => {
   const { data, deleteModal, handleNote, handleNext } = props;
-  const { id, type, value, group, favorite, subtype } = data;
+  const { id, type, value, group, subtype } = data;
   const { t } = useTranslation();
   const { env } = useSnapshot(globalStore);
   const { rootState } = useContext(MainContext);
 
   const pasteAsText = () => {
     return pasteToClipboard(data, true);
-  };
-
-  const handleFavorite = async () => {
-    const nextFavorite = !favorite;
-
-    const matched = find(rootState.list, { id });
-
-    if (!matched) return;
-
-    matched.favorite = nextFavorite;
-
-    updateHistory(id, { favorite: nextFavorite });
   };
 
   const openToBrowser = () => {
@@ -142,12 +139,6 @@ export const useContextMenu = (props: UseContextMenuProps) => {
         text: t("clipboard.button.context_menu.paste_as_path"),
       },
       {
-        action: handleFavorite,
-        text: favorite
-          ? t("clipboard.button.context_menu.unfavorite")
-          : t("clipboard.button.context_menu.favorite"),
-      },
-      {
         action: openToBrowser,
         hide: subtype !== "url",
         text: t("clipboard.button.context_menu.open_in_browser"),
@@ -195,7 +186,6 @@ export const useContextMenu = (props: UseContextMenuProps) => {
 
     if (currentIndex > 0) {
       const moveUpItem = await MenuItem.new({
-        text: "上移",
         action: async () => {
           const prevItem = listForSort[currentIndex - 1];
           const curItem = listForSort[currentIndex];
@@ -214,13 +204,13 @@ export const useContextMenu = (props: UseContextMenuProps) => {
             (a, b) => (b.sortOrder ?? 0) - (a.sortOrder ?? 0),
           );
         },
+        text: "上移",
       });
       await menu.append(moveUpItem);
     }
 
     if (currentIndex < listForSort.length - 1) {
       const moveDownItem = await MenuItem.new({
-        text: "下移",
         action: async () => {
           const nextItem = listForSort[currentIndex + 1];
           const curItem = listForSort[currentIndex];
@@ -239,6 +229,7 @@ export const useContextMenu = (props: UseContextMenuProps) => {
             (a, b) => (b.sortOrder ?? 0) - (a.sortOrder ?? 0),
           );
         },
+        text: "下移",
       });
       await menu.append(moveDownItem);
     }
@@ -251,9 +242,7 @@ export const useContextMenu = (props: UseContextMenuProps) => {
       if (g.id === group) continue; // 跳过当前分类
 
       const moveItem = await MenuItem.new({
-        text: g.name,
         action: async () => {
-          const iconName = g.name;
           // 更新数据库
           await updateHistory(id, { group: g.id });
 
@@ -265,17 +254,18 @@ export const useContextMenu = (props: UseContextMenuProps) => {
             // 移入其他分类则从列表移除（所有分类通用逻辑）
             if (rootState.group !== g.id) {
               // 使用 filter 创建新数组，确保 Valtio 能检测到变化
-              rootState.list = rootState.list.filter(item => item.id !== id);
+              rootState.list = rootState.list.filter((item) => item.id !== id);
             }
           }
         },
+        text: g.name,
       });
       moveItems.push(moveItem);
     }
 
     const moveSubmenu = await Submenu.new({
-      text: t("clipboard.button.context_menu.move_to"),
       items: moveItems,
+      text: t("clipboard.button.context_menu.move_to"),
     });
     await menu.append(moveSubmenu);
 
@@ -285,6 +275,5 @@ export const useContextMenu = (props: UseContextMenuProps) => {
   return {
     handleContextMenu,
     handleDelete,
-    handleFavorite,
   };
 };

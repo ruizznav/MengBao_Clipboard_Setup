@@ -30,10 +30,6 @@ const Preset = () => {
       value: ["delete", "backspace"],
     },
     {
-      label: "preference.shortcut.preset.favorite",
-      value: PRESET_SHORTCUT.FAVORITE,
-    },
-    {
       label: "preference.shortcut.preset.preview_image",
       value: "space",
     },

@@ -1,7 +1,7 @@
 import { useFocusWithin, useKeyPress } from "ahooks";
 import type { KeyType } from "ahooks/lib/useKeyPress";
 import { useContext } from "react";
-import { LISTEN_KEY, PRESET_SHORTCUT } from "@/constants";
+import { LISTEN_KEY } from "@/constants";
 import { MainContext } from "@/pages/Main";
 
 const keys = [
@@ -12,7 +12,6 @@ const keys = [
   "uparrow",
   "downarrow",
   "home",
-  PRESET_SHORTCUT.FAVORITE,
 ];
 
 interface UseKeyboardProps {
@@ -65,12 +64,6 @@ export const useKeyboard = (props: UseKeyboardProps) => {
       case "downarrow":
         return eventBus?.emit({
           action: LISTEN_KEY.CLIPBOARD_ITEM_SELECT_NEXT,
-          id: activeId,
-        });
-      // 收藏和取消收藏
-      case PRESET_SHORTCUT.FAVORITE:
-        return eventBus?.emit({
-          action: LISTEN_KEY.CLIPBOARD_ITEM_FAVORITE,
           id: activeId,
         });
     }

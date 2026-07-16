@@ -1,7 +1,7 @@
-import { useEffect, useRef } from "react";
 import { cloneDeep } from "es-toolkit";
 import { isEmpty, remove } from "es-toolkit/compat";
 import { nanoid } from "nanoid";
+import { useEffect, useRef } from "react";
 import {
   type ClipboardChangeOptions,
   onClipboardChange,
@@ -41,7 +41,6 @@ export const useClipboard = (
 
         const data = {
           createTime: formatDate(),
-          favorite: false,
           group: "_default",
           id: nanoid(),
           search: text?.value,
@@ -83,8 +82,10 @@ export const useClipboard = (
           return qb.where("type", "=", type).where("value", "=", value);
         });
 
-        // 判断新内容是否在当前选中的分类中可见
-        const visible = state.group === group;
+        // 判断新内容是否在当前选中的分类中可见（需同时匹配主分类 + 子分类）
+        const { subType } = state;
+        const typeMatch = !subType || subType === "all" || subType === type;
+        const visible = state.group === group && typeMatch;
 
         if (matched) {
           if (!clipboardStore.content.autoSort) return;

@@ -73,7 +73,11 @@ export const useHistoryList = (options: Options) => {
         }
 
         if (type === "files") {
-          item.value = JSON.parse(value);
+          try {
+            item.value = JSON.parse(value);
+          } catch {
+            item.value = [];
+          }
         }
       }
 
@@ -88,6 +92,8 @@ export const useHistoryList = (options: Options) => {
       }
 
       rootState.list = unionBy(rootState.list, list, "id");
+    } catch (err) {
+      console.error("[useHistoryList] fetchData error:", err);
     } finally {
       state.loading = false;
     }
