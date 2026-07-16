@@ -98,14 +98,24 @@ export const useClipboard = (
             state.list.unshift({ ...data, id });
           }
 
-          return updateHistory(id, { createTime });
+          try {
+            await updateHistory(id, { createTime });
+          } catch (e) {
+            // 关闭应用时驱动被销毁是正常现象，忽略即可
+            console.warn("[useClipboard] updateHistory rejected:", e);
+          }
+          return;
         }
 
         if (visible) {
           state.list.unshift(data);
         }
 
-        insertHistory(sqlData);
+        try {
+          await insertHistory(sqlData);
+        } catch (e) {
+          console.warn("[useClipboard] insertHistory rejected:", e);
+        }
       }, options);
     };
 
