@@ -41,14 +41,10 @@
         "minHeight": 480,
         "minWidth": 700,
         "skipTaskbar": true,
-        "transparent": true,
+        "transparent": false,
         "url": "index.html/#/preference",
         "visible": false,
-        "width": 700,
-        "windowEffects": {
-          "effects": ["sidebar"],
-          "state": "active"
-        }
+        "width": 700
       }
     ]
   },

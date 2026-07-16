@@ -1,5 +1,7 @@
+mod commands;
 mod core;
 
+use commands::screenshot::{finish_screenshot, get_screenshot_path, start_screenshot};
 use core::{prevent_default, setup};
 use tauri::{generate_context, Builder, Manager, WindowEvent};
 use tauri_plugin_autostart::MacosLauncher;
@@ -71,9 +73,19 @@ pub fn run() {
         .plugin(tauri_plugin_eco_paste::init())
         // 自定义判断是否自动启动的插件
         .plugin(tauri_plugin_eco_autostart::init())
+        // 截图相关命令
+        .invoke_handler(tauri::generate_handler![
+            start_screenshot,
+            finish_screenshot,
+            get_screenshot_path,
+        ])
         .on_window_event(|window, event| match event {
-            // 让 app 保持在后台运行：https://tauri.app/v1/guides/features/system-tray/#preventing-the-app-from-closing
+            // 截图窗口允许真正关闭，其它窗口隐藏到后台
             WindowEvent::CloseRequested { api, .. } => {
+                if window.label() == commands::screenshot::SCREENSHOT_WINDOW_LABEL {
+                    return;
+                }
+
                 window.hide().unwrap();
 
                 api.prevent_close();
