@@ -59,7 +59,28 @@ const initStore = async () => {
   clipboardStore.content.operationButtons =
     clipboardStore.content.operationButtons.filter((k) => validOps.includes(k));
 
+  // 热键默认值迁移：剪贴板必须是纯 Alt+Z（不含 Control），截图必须是 Control+Alt+Z
+  // 剪贴板迁移：空值 / 旧版 Alt+C / 任何包含 Control 的脏值 / 与截图热键重复 → 统一修正为 Alt+Z
+  const clipboardVal = (globalStore.shortcut.clipboard || "").toLowerCase();
+  const invalidClipboardValues = ["", "alt+c", "alt+z"];
+  if (
+    invalidClipboardValues.includes(clipboardVal) ||
+    clipboardVal.includes("control") ||
+    clipboardVal.includes("ctrl") ||
+    clipboardVal === (globalStore.shortcut.screenshot || "").toLowerCase()
+  ) {
+    globalStore.shortcut.clipboard = "Alt+Z";
+  }
+  // 截图热键：任何非标准值一律修正为 Control+Alt+Z
+  const validScreenshotShortcuts = ["Control+Alt+Z", "control+alt+z"];
+  if (!globalStore.shortcut.screenshot || !validScreenshotShortcuts.includes(globalStore.shortcut.screenshot)) {
+    globalStore.shortcut.screenshot = "Control+Alt+Z";
+  }
+
   await mkdir(globalStore.env.saveDataDir, { recursive: true });
+
+  // 迁移完成后立即持久化，确保下次启动不再触发迁移
+  await saveStore();
 };
 
 /**

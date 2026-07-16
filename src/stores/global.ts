@@ -15,12 +15,15 @@ export const globalStore = proxy<GlobalStore>({
     theme: DEFAULT_THEME,
   },
 
-  env: {},
+  env: {
+    saveDataDir: "",
+  },
 
   shortcut: {
-    clipboard: "Alt+C",
+    clipboard: "Alt+Z",
     pastePlain: "",
     preference: "Alt+X",
+    screenshot: "Control+Alt+Z",
     quickPaste: {
       enable: false,
       value: "Command+Shift",

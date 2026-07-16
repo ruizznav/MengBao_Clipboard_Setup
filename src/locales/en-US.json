@@ -6,7 +6,7 @@
         "delete": "Delete",
         "download_image": "Download Image",
         "export_as_file": "Export as File",
-        "favorite": "Favorite",
+        "move_to": "Move to",
         "note": "Note",
         "open_in_browser": "Open in Browser",
         "paste_as_path": "Paste as Path",
@@ -14,9 +14,7 @@
         "preview_image": "Preview Image",
         "send_email": "Send Email",
         "show_in_file_explorer": "Show in File Explorer",
-        "show_in_finder": "Show in Finder",
-        "unfavorite": "Unfavorite",
-        "move_to": "Move to"
+        "show_in_finder": "Show in Finder"
       }
     },
     "hints": {
@@ -26,6 +24,26 @@
     "label": {
       "color": "Color",
       "email": "Email",
+      "group": {
+        "add": "Add Group",
+        "add_title": "Add Group",
+        "cancel": "Cancel",
+        "confirm_delete": "Delete",
+        "create": "Create",
+        "create_failed": "Failed to create group",
+        "created": "Group「{{0}}」created",
+        "delete": "Delete",
+        "delete_confirm": "Are you sure to delete group「{{0}}」? Clipboard items in this group will be moved to「All」.",
+        "delete_failed": "Failed to delete group",
+        "deleted": "Group「{{0}}」deleted",
+        "input_name": "Enter group name",
+        "input_new_name": "Enter new group name",
+        "please_input": "Please enter a name",
+        "rename": "Rename",
+        "rename_failed": "Failed to rename",
+        "rename_title": "Rename Group",
+        "renamed": "Renamed successfully"
+      },
       "html": "HTML",
       "image": "Image",
       "link": "Link",
@@ -36,30 +54,9 @@
       "rtf": "Rich Text",
       "tab": {
         "all": "All",
-        "favorite": "Favorite",
         "files": "File",
         "image": "Image",
         "text": "Text"
-      },
-      "group": {
-        "add": "Add Group",
-        "rename": "Rename",
-        "delete": "Delete",
-        "delete_confirm": "Are you sure to delete group「{{0}}」? Clipboard items in this group will be moved to「All」.",
-        "add_title": "Add Group",
-        "rename_title": "Rename Group",
-        "input_name": "Enter group name",
-        "input_new_name": "Enter new group name",
-        "create": "Create",
-        "created": "Group「{{0}}」created",
-        "renamed": "Renamed successfully",
-        "deleted": "Group「{{0}}」deleted",
-        "create_failed": "Failed to create group",
-        "rename_failed": "Failed to rename",
-        "delete_failed": "Failed to delete group",
-        "please_input": "Please enter a name",
-        "confirm_delete": "Delete",
-        "cancel": "Cancel"
       }
     }
   },
@@ -141,7 +138,6 @@
           "custom_operation_button": "Custom"
         },
         "hints": {
-          "auto_favorite": "Auto-favorite after adding or editing a note",
           "auto_paste": "Quickly paste content to the input field when using the left mouse button",
           "auto_sort": "Alignment to the top when copying existing content",
           "copy_as_plain": "Rich text and HTML formats retain only plain text content when copied",
@@ -151,7 +147,6 @@
           "show_original_content": "Whether to display the original content on mouse hover after adding a note"
         },
         "label": {
-          "auto_favorite": "Auto Favorite",
           "auto_paste": "Auto Paste",
           "auto_paste_double": "Double Click",
           "auto_paste_single": "Single Click",
@@ -163,11 +158,10 @@
           "operation_button_option": {
             "copy": "Copy",
             "delete": "Delete",
-            "favorite": "Favorite",
-            "notes": "Notes",
-            "paste_plain": "Paste as Plain Text",
+            "move_down": "Move Down",
             "move_up": "Move Up",
-            "move_down": "Move Down"
+            "notes": "Notes",
+            "paste_plain": "Paste as Plain Text"
           },
           "paste_as_plain": "Paste as Plain Text",
           "show_original_content": "Show Original Content"
@@ -253,7 +247,6 @@
           "delete_title": "Delete History",
           "duration": "Retention Duration",
           "duration_unit": "Day",
-          "include_favorite": "Delete Favorites",
           "max_count": "Max Count",
           "max_count_unit": "Items",
           "time_range": "Time Range",
@@ -299,10 +292,10 @@
           "theme": "Theme",
           "theme_clear_sky": "☀️ Clear Sky",
           "theme_coral": "🪸 Coral",
-          "theme_matcha": "🍵 Matcha",
-          "theme_peach": "🍑 Peach Oolong",
           "theme_cream_cat": "🐱 Cream Cat",
-          "theme_lavender": "💜 Lavender"
+          "theme_lavender": "💜 Lavender",
+          "theme_matcha": "🍵 Matcha",
+          "theme_peach": "🍑 Peach Oolong"
         },
         "title": "Appearance Settings"
       },
@@ -340,7 +333,6 @@
       "preset": {
         "back_to_top": "Back to Top",
         "delete": "Delete",
-        "favorite": "Favorite Item",
         "fixed_window": "Fixed Window",
         "hide_window": "Hide Window",
         "open_preferences": "Open Preferences",
@@ -353,13 +345,15 @@
       "shortcut": {
         "hints": {
           "paste_as_plain": "Paste selections as plain text or paths when the window is activated",
-          "quick_paste": "Use number key combos to quickly paste top 9 items when window is hidden"
+          "quick_paste": "Use number key combos to quickly paste top 9 items when window is hidden",
+          "screenshot": "Launch screenshot tool to capture screen area"
         },
         "label": {
           "open_clipboard": "Open Clipboard Window",
           "open_settings": "Open Preferences Window",
           "paste_as_plain": "Paste as Plain Text",
-          "quick_paste": "Quick Paste"
+          "quick_paste": "Quick Paste",
+          "screenshot": "Screenshot"
         },
         "title": "Shortcuts"
       }

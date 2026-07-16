@@ -35,6 +35,20 @@ i18n.use(initReactI18next).init({
   },
 });
 
+// 全局防御：monkey-patch t() 函数，防止任何翻译调用因插值异常导致整棵 React 树崩溃
+const originalT = i18n.t.bind(i18n);
+(i18n as any).t = function (key: string, options?: any): string {
+  try {
+    const result = originalT(key, options);
+    // 如果返回 undefined/null（key 不存在或插值失败），回退到 key 本身
+    if (result == null) return String(key);
+    return result;
+  } catch {
+    // 翻译调用任何异常都安全降级
+    return String(key);
+  }
+};
+
 export { i18n };
 
 export const getAntdLocale = (language: Language = LANGUAGE.ZH_CN) => {

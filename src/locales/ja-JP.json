@@ -6,7 +6,7 @@
         "delete": "削除",
         "download_image": "画像をダウンロード",
         "export_as_file": "ファイルとしてエクスポート",
-        "favorite": "コレクション",
+        "move_to": "移動",
         "note": "備考",
         "open_in_browser": "ブラウザで開く",
         "paste_as_path": "パスとして貼り付ける",
@@ -14,9 +14,7 @@
         "preview_image": "画像プレビュー",
         "send_email": "メールを送信",
         "show_in_file_explorer": "ファイルエクスプローラで表示",
-        "show_in_finder": "Finder で表示",
-        "unfavorite": "コレクションのキャンセル",
-        "move_to": "移動"
+        "show_in_finder": "Finder で表示"
       }
     },
     "hints": {
@@ -26,6 +24,26 @@
     "label": {
       "color": "カラー",
       "email": "メール",
+      "group": {
+        "add": "グループを追加",
+        "add_title": "グループを追加",
+        "cancel": "キャンセル",
+        "confirm_delete": "削除する",
+        "create": "作成",
+        "create_failed": "グループの作成に失敗しました",
+        "created": "グループ「{{0}}」を作成しました",
+        "delete": "削除",
+        "delete_confirm": "グループ「{{0}}」を削除しますか？このグループのクリップボード項目は「すべて」に移動されます。",
+        "delete_failed": "グループの削除に失敗しました",
+        "deleted": "グループ「{{0}}」を削除しました",
+        "input_name": "グループ名を入力",
+        "input_new_name": "新しいグループ名を入力",
+        "please_input": "グループ名を入力してください",
+        "rename": "名前を変更",
+        "rename_failed": "名前の変更に失敗しました",
+        "rename_title": "グループ名を変更",
+        "renamed": "名前を変更しました"
+      },
       "html": "HTML",
       "image": "画像",
       "link": "ウェブリンク",
@@ -36,30 +54,9 @@
       "rtf": "リッチテキスト",
       "tab": {
         "all": "すべて",
-        "favorite": "コレクション",
         "files": "ファイル",
         "image": "画像",
         "text": "テキスト"
-      },
-      "group": {
-        "add": "グループを追加",
-        "rename": "名前を変更",
-        "delete": "削除",
-        "delete_confirm": "グループ「{{0}}」を削除しますか？このグループのクリップボード項目は「すべて」に移動されます。",
-        "add_title": "グループを追加",
-        "rename_title": "グループ名を変更",
-        "input_name": "グループ名を入力",
-        "input_new_name": "新しいグループ名を入力",
-        "create": "作成",
-        "created": "グループ「{{0}}」を作成しました",
-        "renamed": "名前を変更しました",
-        "deleted": "グループ「{{0}}」を削除しました",
-        "create_failed": "グループの作成に失敗しました",
-        "rename_failed": "名前の変更に失敗しました",
-        "delete_failed": "グループの削除に失敗しました",
-        "please_input": "グループ名を入力してください",
-        "confirm_delete": "削除する",
-        "cancel": "キャンセル"
       }
     }
   },
@@ -141,7 +138,6 @@
           "custom_operation_button": "カスタム"
         },
         "hints": {
-          "auto_favorite": "メモの追加・編集後に自動お気に入り登録",
           "auto_paste": "左クリック時に、内容を素早く入力フィールドに貼り付けます",
           "auto_sort": "既存の内容をコピーして最前面に配置する",
           "copy_as_plain": "リッチテキストとHTML形式は、コピーしてもプレーンテキストの内容しか保持しない",
@@ -151,7 +147,6 @@
           "show_original_content": "メモを追加した後、マウスをホバーしたときに元のコンテンツを表示するかどうか"
         },
         "label": {
-          "auto_favorite": "自動コレクション",
           "auto_paste": "自動ペースト",
           "auto_paste_double": "ダブルクリック",
           "auto_paste_single": "シングルクリック",
@@ -163,11 +158,10 @@
           "operation_button_option": {
             "copy": "コピー",
             "delete": "削除",
-            "favorite": "お気に入り",
-            "notes": "メモ",
-            "paste_plain": "プレーンテキストとして貼り付け",
+            "move_down": "下へ",
             "move_up": "上へ",
-            "move_down": "下へ"
+            "notes": "メモ",
+            "paste_plain": "プレーンテキストとして貼り付け"
           },
           "paste_as_plain": "プレーンテキストとして貼り付ける",
           "show_original_content": "元の内容を表示します"
@@ -253,7 +247,6 @@
           "delete_title": "履歴を削除",
           "duration": "保持期間",
           "duration_unit": "日",
-          "include_favorite": "お気に入りも削除",
           "max_count": "最大保持エントリー数",
           "max_count_unit": "項",
           "time_range": "時間範囲",
@@ -299,10 +292,10 @@
           "theme": "テーマ設定",
           "theme_clear_sky": "☀️ クリアスカイ",
           "theme_coral": "🪸 コーラル",
-          "theme_matcha": "🍵 抹茶",
-          "theme_peach": "🍑 ピーチウーロン",
           "theme_cream_cat": "🐱 クリームキャット",
-          "theme_lavender": "💜 ラベンダー"
+          "theme_lavender": "💜 ラベンダー",
+          "theme_matcha": "🍵 抹茶",
+          "theme_peach": "🍑 ピーチウーロン"
         },
         "title": "外観設定"
       },
@@ -340,7 +333,6 @@
       "preset": {
         "back_to_top": "トップへ戻る",
         "delete": "削除",
-        "favorite": "ブックマークエントリー",
         "fixed_window": "固定ウィンドウ",
         "hide_window": "ウィンドウを隠す",
         "open_preferences": "環境設定を開く",
@@ -353,13 +345,15 @@
       "shortcut": {
         "hints": {
           "paste_as_plain": "選択範囲をプレーンテキスト、パスとして貼り付けます。",
-          "quick_paste": "ウィンドウを隠す際、数字キーの組み合わせで最初の9項目を素早く貼り付ける"
+          "quick_paste": "ウィンドウを隠す際、数字キーの組み合わせで最初の9項目を素早く貼り付ける",
+          "screenshot": "スクリーンショットツールを起動して画面領域をキャプチャします"
         },
         "label": {
           "open_clipboard": "クリップボードを開く",
           "open_settings": "クリップボード設定を開く",
           "paste_as_plain": "プレーンテキストとして貼り付け",
-          "quick_paste": "クイックペースト"
+          "quick_paste": "クイックペースト",
+          "screenshot": "スクリーンショット"
         },
         "title": "ショートカットキー"
       }

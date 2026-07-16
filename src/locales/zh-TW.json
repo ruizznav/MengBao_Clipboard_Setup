@@ -6,7 +6,7 @@
         "delete": "刪除",
         "download_image": "下載圖片",
         "export_as_file": "匯出為文件",
-        "favorite": "收藏",
+        "move_to": "移動到",
         "note": "備註",
         "open_in_browser": "在瀏覽器開啟",
         "paste_as_path": "粘貼為路徑",
@@ -14,9 +14,7 @@
         "preview_image": "預覽圖片",
         "send_email": "發送郵件",
         "show_in_file_explorer": "在檔案總管中顯示",
-        "show_in_finder": "在 Finder 中顯示",
-        "unfavorite": "取消收藏",
-        "move_to": "移動到"
+        "show_in_finder": "在 Finder 中顯示"
       }
     },
     "hints": {
@@ -26,6 +24,26 @@
     "label": {
       "color": "顏色",
       "email": "信箱",
+      "group": {
+        "add": "新增分類",
+        "add_title": "新增分類",
+        "cancel": "取消",
+        "confirm_delete": "確定刪除",
+        "create": "建立",
+        "create_failed": "建立分類失敗",
+        "created": "分類「{{0}}」已建立",
+        "delete": "刪除",
+        "delete_confirm": "確定要刪除分類「{{0}}」嗎？屬於該分類的剪貼簿內容將移入「全部」。",
+        "delete_failed": "刪除分類失敗",
+        "deleted": "分類「{{0}}」已刪除",
+        "input_name": "輸入分類名稱",
+        "input_new_name": "輸入新的分類名稱",
+        "please_input": "請輸入分類名稱",
+        "rename": "重新命名",
+        "rename_failed": "重新命名失敗",
+        "rename_title": "重新命名分類",
+        "renamed": "重新命名成功"
+      },
       "html": "HTML",
       "image": "圖片",
       "link": "連結",
@@ -36,30 +54,9 @@
       "rtf": "富文字",
       "tab": {
         "all": "全部",
-        "favorite": "收藏",
         "files": "文件",
         "image": "圖片",
         "text": "文字"
-      },
-      "group": {
-        "add": "新增分類",
-        "rename": "重新命名",
-        "delete": "刪除",
-        "delete_confirm": "確定要刪除分類「{{0}}」嗎？屬於該分類的剪貼簿內容將移入「全部」。",
-        "add_title": "新增分類",
-        "rename_title": "重新命名分類",
-        "input_name": "輸入分類名稱",
-        "input_new_name": "輸入新的分類名稱",
-        "create": "建立",
-        "created": "分類「{{0}}」已建立",
-        "renamed": "重新命名成功",
-        "deleted": "分類「{{0}}」已刪除",
-        "create_failed": "建立分類失敗",
-        "rename_failed": "重新命名失敗",
-        "delete_failed": "刪除分類失敗",
-        "please_input": "請輸入分類名稱",
-        "confirm_delete": "確定刪除",
-        "cancel": "取消"
       }
     }
   },
@@ -141,7 +138,6 @@
           "custom_operation_button": "自定義"
         },
         "hints": {
-          "auto_favorite": "新增或編輯備註後自動收藏",
           "auto_paste": "當使用滑鼠左鍵時，快速將內容貼上到輸入位置",
           "auto_sort": "複製已存在的內容時排列到最前面",
           "copy_as_plain": "富文字和HTML格式在複製時僅保留純文字內容",
@@ -151,7 +147,6 @@
           "show_original_content": "添加備註後，滑鼠懸停時是否顯示原內容"
         },
         "label": {
-          "auto_favorite": "自動收藏",
           "auto_paste": "自動貼上",
           "auto_paste_double": "雙擊",
           "auto_paste_single": "單擊",
@@ -163,11 +158,10 @@
           "operation_button_option": {
             "copy": "複製",
             "delete": "刪除",
-            "favorite": "收藏",
-            "notes": "備註",
-            "paste_plain": "貼上為純文本",
+            "move_down": "下移",
             "move_up": "上移",
-            "move_down": "下移"
+            "notes": "備註",
+            "paste_plain": "貼上為純文本"
           },
           "paste_as_plain": "粘貼為純文字",
           "show_original_content": "顯示原內容"
@@ -253,7 +247,6 @@
           "delete_title": "刪除歷史記錄",
           "duration": "保留時長",
           "duration_unit": "天",
-          "include_favorite": "刪除收藏",
           "max_count": "最大保留條數",
           "max_count_unit": "條",
           "time_range": "時間範圍",
@@ -299,10 +292,10 @@
           "theme": "主題模式",
           "theme_clear_sky": "☀️ 晴空",
           "theme_coral": "🪸 珊瑚",
-          "theme_matcha": "🍵 抹茶",
-          "theme_peach": "🍑 蜜桃烏龍",
           "theme_cream_cat": "🐱 奶油貓",
-          "theme_lavender": "💜 薰衣草"
+          "theme_lavender": "💜 薰衣草",
+          "theme_matcha": "🍵 抹茶",
+          "theme_peach": "🍑 蜜桃烏龍"
         },
         "title": "外觀設定"
       },
@@ -340,7 +333,6 @@
       "preset": {
         "back_to_top": "回到頂部",
         "delete": "删除",
-        "favorite": "收藏條目",
         "fixed_window": "固定視窗",
         "hide_window": "隱藏視窗",
         "open_preferences": "打開偏好設定",
@@ -353,13 +345,15 @@
       "shortcut": {
         "hints": {
           "paste_as_plain": "啟動視窗時，將選中的內容粘貼為純文字或路徑",
-          "quick_paste": "隱藏視窗時，使用數字鍵快速貼上前九項"
+          "quick_paste": "隱藏視窗時，使用數字鍵快速貼上前九項",
+          "screenshot": "啟動截圖工具，截取螢幕區域"
         },
         "label": {
           "open_clipboard": "打開剪貼簿視窗",
           "open_settings": "打開偏好設定視窗",
           "paste_as_plain": "貼上為純文字",
-          "quick_paste": "快速貼上"
+          "quick_paste": "快速貼上",
+          "screenshot": "截圖"
         },
         "title": "快捷鍵"
       }

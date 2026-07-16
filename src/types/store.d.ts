@@ -39,6 +39,7 @@ export interface GlobalStore {
       value: string;
     };
     pastePlain: string;
+    screenshot: string;
   };
 
   // 只在当前系统环境使用

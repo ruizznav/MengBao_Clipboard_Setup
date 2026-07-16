@@ -42,7 +42,6 @@ export const getDatabase = async () => {
     .addColumn("count", "integer")
     .addColumn("width", "integer")
     .addColumn("height", "integer")
-    .addColumn("favorite", "integer", (col) => col.defaultTo(0))
     .addColumn("createTime", "text")
     .addColumn("note", "text")
     .addColumn("subtype", "text")
@@ -60,10 +59,34 @@ export const getDatabase = async () => {
 
   // 确保预设分组存在，并强制排序位置
   const presetGroups = [
-    { id: "_default", name: "默认", color: "#64b5f6", sortOrder: 0, createTime: new Date().toISOString() },
-    { id: "_work", name: "工作", color: "#f06292", sortOrder: 1, createTime: new Date().toISOString() },
-    { id: "_study", name: "学习", color: "#81c784", sortOrder: 2, createTime: new Date().toISOString() },
-    { id: "_etc", name: "等等", color: "#ffb74d", sortOrder: 3, createTime: new Date().toISOString() },
+    {
+      color: "#64b5f6",
+      createTime: new Date().toISOString(),
+      id: "_default",
+      name: "默认",
+      sortOrder: 0,
+    },
+    {
+      color: "#f06292",
+      createTime: new Date().toISOString(),
+      id: "_work",
+      name: "工作",
+      sortOrder: 1,
+    },
+    {
+      color: "#81c784",
+      createTime: new Date().toISOString(),
+      id: "_study",
+      name: "学习",
+      sortOrder: 2,
+    },
+    {
+      color: "#ffb74d",
+      createTime: new Date().toISOString(),
+      id: "_etc",
+      name: "等等",
+      sortOrder: 3,
+    },
   ];
   for (const g of presetGroups) {
     const exists = await db

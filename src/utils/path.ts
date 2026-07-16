@@ -9,7 +9,10 @@ import { isDev } from "./is";
  * @param paths 路径数组
  */
 export function join(...paths: string[]) {
-  const joinPaths = paths.map((path, index) => {
+  // 防御：过滤掉 undefined/null 路径段（env 字段可能尚未异步初始化）
+  const safePaths = paths.filter(Boolean);
+
+  const joinPaths = safePaths.map((path, index) => {
     if (index === 0) {
       return path.replace(new RegExp(`${sep()}+$`), "");
     }

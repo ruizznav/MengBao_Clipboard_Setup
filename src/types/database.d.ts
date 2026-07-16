@@ -12,7 +12,6 @@ export type DatabaseSchemaHistory<
   id: string;
   group: DatabaseSchemaGroupId;
   search: string;
-  favorite: boolean;
   createTime: string;
   note?: string;
   subtype?: DatabaseSchemaHistorySubtype;
@@ -20,7 +19,7 @@ export type DatabaseSchemaHistory<
 };
 
 export type DatabaseSchemaGroupId = LiteralUnion<
-  "all" | "text" | "image" | "files" | "favorite",
+  "all" | "text" | "image" | "files",
   string
 >;
 

@@ -6,7 +6,7 @@
         "delete": "删除",
         "download_image": "下载图片",
         "export_as_file": "导出为文件",
-        "favorite": "收藏",
+        "move_to": "移动到",
         "note": "备注",
         "open_in_browser": "在浏览器访问",
         "paste_as_path": "粘贴为路径",
@@ -14,9 +14,7 @@
         "preview_image": "预览图片",
         "send_email": "发送邮件",
         "show_in_file_explorer": "在文件资源管理器中显示",
-        "show_in_finder": "在 Finder 中显示",
-        "unfavorite": "取消收藏",
-        "move_to": "移动到"
+        "show_in_finder": "在 Finder 中显示"
       }
     },
     "hints": {
@@ -26,6 +24,26 @@
     "label": {
       "color": "颜色",
       "email": "邮箱",
+      "group": {
+        "add": "添加分类",
+        "add_title": "添加分类",
+        "cancel": "取消",
+        "confirm_delete": "确定删除",
+        "create": "创建",
+        "create_failed": "创建分类失败",
+        "created": "分类「{{0}}」已创建",
+        "delete": "删除",
+        "delete_confirm": "确定要删除分类「{{0}}」吗？属于该分类的剪贴板内容将移入「全部」。",
+        "delete_failed": "删除分类失败",
+        "deleted": "分类「{{0}}」已删除",
+        "input_name": "输入分类名称",
+        "input_new_name": "输入新的分类名称",
+        "please_input": "请输入分类名称",
+        "rename": "重命名",
+        "rename_failed": "重命名失败",
+        "rename_title": "重命名分类",
+        "renamed": "重命名成功"
+      },
       "html": "HTML",
       "image": "图片",
       "link": "链接",
@@ -36,30 +54,9 @@
       "rtf": "富文本",
       "tab": {
         "all": "全部",
-        "favorite": "收藏",
         "files": "文件",
         "image": "图片",
         "text": "文本"
-      },
-      "group": {
-        "add": "添加分类",
-        "rename": "重命名",
-        "delete": "删除",
-        "delete_confirm": "确定要删除分类「{{0}}」吗？属于该分类的剪贴板内容将移入「全部」。",
-        "add_title": "添加分类",
-        "rename_title": "重命名分类",
-        "input_name": "输入分类名称",
-        "input_new_name": "输入新的分类名称",
-        "create": "创建",
-        "created": "分类「{{0}}」已创建",
-        "renamed": "重命名成功",
-        "deleted": "分类「{{0}}」已删除",
-        "create_failed": "创建分类失败",
-        "rename_failed": "重命名失败",
-        "delete_failed": "删除分类失败",
-        "please_input": "请输入分类名称",
-        "confirm_delete": "确定删除",
-        "cancel": "取消"
       }
     }
   },
@@ -141,7 +138,6 @@
           "custom_operation_button": "自定义"
         },
         "hints": {
-          "auto_favorite": "新增或编辑备注后自动收藏",
           "auto_paste": "鼠标左键操作时，快速粘贴内容至输入位置",
           "auto_sort": "复制已存在的内容时排列到最前面",
           "copy_as_plain": "富文本和HTML格式在复制时仅保留纯文本内容",
@@ -151,7 +147,6 @@
           "show_original_content": "添加备注后，鼠标悬停时是否显示原内容"
         },
         "label": {
-          "auto_favorite": "自动收藏",
           "auto_paste": "自动粘贴",
           "auto_paste_double": "双击",
           "auto_paste_single": "单击",
@@ -163,11 +158,10 @@
           "operation_button_option": {
             "copy": "复制",
             "delete": "删除",
-            "favorite": "收藏",
-            "notes": "备注",
-            "paste_plain": "粘贴为纯文本",
+            "move_down": "下移",
             "move_up": "上移",
-            "move_down": "下移"
+            "notes": "备注",
+            "paste_plain": "粘贴为纯文本"
           },
           "paste_as_plain": "粘贴为纯文本",
           "show_original_content": "显示原内容"
@@ -253,7 +247,6 @@
           "delete_title": "删除历史记录",
           "duration": "保留时长",
           "duration_unit": "天",
-          "include_favorite": "删除收藏",
           "max_count": "最大保留条数",
           "max_count_unit": "条",
           "time_range": "时间范围",
@@ -299,10 +292,10 @@
           "theme": "主题模式",
           "theme_clear_sky": "☀️ 晴空",
           "theme_coral": "🪸 珊瑚",
-          "theme_matcha": "🍵 抹茶",
-          "theme_peach": "🍑 蜜桃乌龙",
           "theme_cream_cat": "🐱 奶油猫",
-          "theme_lavender": "💜 薰衣草"
+          "theme_lavender": "💜 薰衣草",
+          "theme_matcha": "🍵 抹茶",
+          "theme_peach": "🍑 蜜桃乌龙"
         },
         "title": "外观设置"
       },
@@ -340,7 +333,6 @@
       "preset": {
         "back_to_top": "回到顶部",
         "delete": "删除",
-        "favorite": "收藏条目",
         "fixed_window": "固定窗口",
         "hide_window": "隐藏窗口",
         "open_preferences": "打开偏好设置",
@@ -353,13 +345,15 @@
       "shortcut": {
         "hints": {
           "paste_as_plain": "激活窗口时，将选中的内容粘贴为纯文本或路径",
-          "quick_paste": "隐藏窗口时，使用数字组合键快速粘贴前九项"
+          "quick_paste": "隐藏窗口时，使用数字组合键快速粘贴前九项",
+          "screenshot": "启动截图工具，截取屏幕区域"
         },
         "label": {
           "open_clipboard": "打开剪贴板窗口",
           "open_settings": "打开偏好设置窗口",
           "paste_as_plain": "粘贴为纯文本",
-          "quick_paste": "快速粘贴"
+          "quick_paste": "快速粘贴",
+          "screenshot": "截图"
         },
         "title": "快捷键"
       }
